@@ -1,2 +1,1 @@
-# Amharic-word2vec
-Amharic Word Embedding 
+# Amharic-NLP Projects
