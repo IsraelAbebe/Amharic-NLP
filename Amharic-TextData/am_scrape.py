@@ -1,19 +1,37 @@
-from bs4 import BeautifulSoup
-import requests
+# from bs4 import BeautifulSoup
+# import requests
+from selenium import webdriver
+import csv
 
-web_link = "https://dailyinjera.org/series"
+MAX_PAGE_NUM = 5
+MAX_PAGE_DIG = 100
+
+page_link = 'https://ethiopiazare.com/amharic/history/history/4379-abuna-theophilos-by-aklilu-habtewold'
 
 
-source = requests.get(web_link).text
+with open('results.csv','w') as f:
+    f.write('Text')
 
-soup = BeautifulSoup(source,'lxml')
 
-article = soup.find('div',class_='sppb-content-holder')
+driver  = webdriver.Firefox()
 
-headline = article.h3.text
-content = article.find('p',class_='p1').text
+for i in range(1,MAX_PAGE_NUM+1):
+    print('Going Through:',page_link)
+    page_num = (MAX_PAGE_DIG)
 
-print(headline)
-print()
-print(content)
-# sppb-content-holder
+    driver.get(page_link)
+    texts = driver.find_elements_by_tag_name('p')
+    
+
+    num_text = len(texts)
+    with open('results.csv', 'a') as f:
+        for i in range(num_text):
+            f.write(texts[i].text.encode('utf-8')+'\n')
+
+
+
+    links = driver.find_elements_by_class_name('next')
+    page_link = links[0].find_element_by_tag_name('a').get_attribute('href')
+
+
+driver.close()
