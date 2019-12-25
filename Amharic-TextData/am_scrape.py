@@ -3,6 +3,18 @@
 from selenium import webdriver
 import csv
 
+
+
+def preprocess(texts):
+    num_text = len(texts)
+    full_text = [texts[i].text.encode('utf-8')+'\n' for i in range(num_text)]
+    full_text = ' '.join(full_text)
+    full_text = full_text.strip()
+    full_text = full_text.replace('\n',' ')
+    return full_text
+
+
+
 MAX_PAGE_NUM = 5
 MAX_PAGE_DIG = 100
 
@@ -23,10 +35,10 @@ for i in range(1,MAX_PAGE_NUM+1):
     texts = driver.find_elements_by_tag_name('p')
     
 
-    num_text = len(texts)
     with open('results.csv', 'a') as f:
-        for i in range(num_text):
-            f.write(texts[i].text.encode('utf-8')+'\n')
+        f.write(preprocess(texts)+',')
+        break
+    break
 
 
 
