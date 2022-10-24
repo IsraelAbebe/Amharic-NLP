@@ -25,11 +25,11 @@ class AMHARIC2LATIN():
             else:
                 return char
 
-    def get_latin_word(word):
+    def get_latin_word(self,word):
         result =  map(self.get_latin_char, word)
         return ''.join(list(result))
 
-    def get_am_from_latin(word):
+    def get_am_from_latin(self,word):
         regex_pattern = '|'.join('(?<={})'.format(re.escape(delim)) for delim in self.delimiters)
         word_list = re.split(regex_pattern, word)
         string = ''
