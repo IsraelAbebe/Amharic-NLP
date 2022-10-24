@@ -50,7 +50,8 @@ class AMHARIC2LATIN():
             string += self.letter_data[col][row]
 
         return string[0]
-        
-result=get_latin_word('የይርጋለም የተቀናጀ የግብርና ኢንዱስትሪ ፓርክ 11 1 ሼዶች የተጠናቀቁ ሲሆን ከነዚህ መካከል 4ቱ')
-print(result)
-print(get_am_from_latin(result))
+
+if __name__ ='__main__': 
+    result=get_latin_word('የይርጋለም የተቀናጀ የግብርና ኢንዱስትሪ ፓርክ 11 1 ሼዶች የተጠናቀቁ ሲሆን ከነዚህ መካከል 4ቱ')
+    print(result)
+    print(get_am_from_latin(result))
